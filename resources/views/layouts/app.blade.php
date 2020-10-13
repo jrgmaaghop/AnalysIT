@@ -5,13 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Laracore</title>
 </head>
-<body class="antilaliased font-sans bg-gray-200">
+<body>
 
 <main id="app">
-    <navigation></navigation>
-    <div class="py-5">
-        <router-view></router-view>
-    </div>
+    <v-app>
+        <v-navigation-drawer app>
+            <navigation></navigation>
+        </v-navigation-drawer>
+        <v-app-bar app>
+
+        </v-app-bar>
+        <v-main>
+            <!-- Provides the application the proper gutter -->
+            <v-container>
+                <!-- If using vue-router -->
+                <router-view></router-view>
+            </v-container>
+        </v-main>
+    </v-app>
+
 </main>
 
 <script src="/js/app.js"></script>

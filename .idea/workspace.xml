@@ -15,6 +15,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="composer.json" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -169,7 +170,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1602568127422</updated>
-      <workItem from="1602568128484" duration="4752000" />
+      <workItem from="1602568128484" duration="11299000" />
     </task>
     <servers />
   </component>
@@ -177,6 +178,10 @@
     <option name="version" value="3" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="732" y="276" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1602579566968">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state x="732" y="276" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/-1920.0.1920.1050/0.0.1920.1050/1982.0.1858.1080@0.0.1920.1050" timestamp="1602579566968" />
     <state x="2691" y="295" key="FileChooserDialogImpl" timestamp="1602572271956">
       <screen x="1982" y="0" width="1858" height="1080" />
     </state>

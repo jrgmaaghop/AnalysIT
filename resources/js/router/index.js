@@ -9,11 +9,21 @@ export default {
             path: '/',
             name: 'home',
             component: Home,
+            meta: {
+                show: true,
+                title: 'Home',
+                icon: 'check'
+            }
         },
         {
             path: '/about',
             name: 'about',
             component: About,
+            meta: {
+                show: true,
+                title: 'About',
+                icon: 'eye'
+            }
         }
     ]
 }
