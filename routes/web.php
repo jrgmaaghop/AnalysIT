@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Auth::routes();
+Route::get('/calculate', [\App\Http\Controllers\AnalyzeController::class, 'analyze']);
 
 Route::view('/{any}', 'layouts/app')->where('any', '.*');
 
