@@ -2241,6 +2241,47 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -2249,9 +2290,16 @@ __webpack_require__.r(__webpack_exports__);
       number_items: 1,
       number_studs: 1,
       items: [],
+      form: {
+        key: null,
+        name: '',
+        scores: []
+      },
       rules: [function (value) {
         return !!value || 'Required.';
-      }]
+      }],
+      render_table: false,
+      tab: 0
     };
   },
   // name: "home"
@@ -2259,14 +2307,33 @@ __webpack_require__.r(__webpack_exports__);
     var _this = this;
 
     axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/api/user').then(function (response) {
-      console.log(response);
+      // console.log(response)
       _this.base = response.data.base_url;
     });
   },
   methods: {
     setNumbers: function setNumbers() {
+      for (var n = 0; n < this.number_studs; n++) {
+        this.form = {
+          key: n,
+          name: '',
+          scores: []
+        }; // this.form.key = n
+
+        this.items[n] = this.form; // this.items.push(this.form)
+
+        for (var i = 0; i < this.number_items; i++) {
+          this.items[n].scores.push({
+            key: i,
+            value: 0
+          });
+        }
+      }
+
       console.log(this.number_studs);
       console.log(this.number_items);
+      console.log(this.items);
+      this.render_table = true;
     },
     calculate: function calculate() {
       // axios.get('/api/calculate')
@@ -2274,7 +2341,10 @@ __webpack_require__.r(__webpack_exports__);
       //         console.log(response)
       //         this.base = response.data.base_url
       //     })
-      window.open(this.base + '/calculate', "_blank");
+      console.log(this.items); // window.open(this.base + '/calculate', "_blank");
+    },
+    generate: function generate() {
+      console.log(this.items);
     }
   }
 });
@@ -3614,7 +3684,26 @@ var render = function() {
                     },
                     [
                       _vm._v(
-                        "\n                    Block Button\n                "
+                        "\n                    Generate Table\n                "
+                      )
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c("br"),
+                  _vm._v(" "),
+                  _c(
+                    "v-btn",
+                    {
+                      attrs: { block: "" },
+                      on: {
+                        click: function($event) {
+                          return _vm.calculate()
+                        }
+                      }
+                    },
+                    [
+                      _vm._v(
+                        "\n                    Calculate\n                "
                       )
                     ]
                   )
@@ -3628,52 +3717,171 @@ var render = function() {
         1
       ),
       _vm._v(" "),
-      _c(
-        "v-card",
-        { attrs: { elevation: "2" } },
-        [
-          _c("v-simple-table", {
-            scopedSlots: _vm._u([
-              {
-                key: "default",
-                fn: function() {
-                  return [
-                    _c("thead", [
-                      _c("tr", [
-                        _c("th", { staticClass: "text-left" }, [
-                          _vm._v(
-                            "\n                        Name\n                    "
-                          )
-                        ]),
-                        _vm._v(" "),
-                        _c("th", { staticClass: "text-left" }, [
-                          _vm._v(
-                            "\n                        Calories\n                    "
-                          )
-                        ])
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "tbody",
-                      _vm._l(_vm.items, function(i) {
-                        return _c("tr", { key: i.name }, [
-                          _c("td", [_vm._v(_vm._s(i.name))]),
-                          _vm._v(" "),
-                          _c("td", [_vm._v(_vm._s(i.calories))])
-                        ])
-                      }),
-                      0
-                    )
-                  ]
+      _vm.render_table
+        ? _c(
+            "v-card",
+            { attrs: { elevation: "2" } },
+            [
+              _c(
+                "v-tabs",
+                {
+                  attrs: {
+                    dark: "",
+                    "background-color": "teal darken-3",
+                    "show-arrows": ""
+                  },
+                  model: {
+                    value: _vm.tab,
+                    callback: function($$v) {
+                      _vm.tab = $$v
+                    },
+                    expression: "tab"
+                  }
                 },
-                proxy: true
-              }
-            ])
-          })
-        ],
-        1
-      )
+                [
+                  _c("v-tabs-slider", { attrs: { color: "teal lighten-3" } }),
+                  _vm._v(" "),
+                  _vm._l(Number(_vm.number_studs), function(n) {
+                    return _c("v-tab", { key: n }, [
+                      _vm._v(
+                        "\n                Student " +
+                          _vm._s(n) +
+                          "\n            "
+                      )
+                    ])
+                  })
+                ],
+                2
+              ),
+              _vm._v(" "),
+              _c(
+                "v-tabs-items",
+                {
+                  model: {
+                    value: _vm.tab,
+                    callback: function($$v) {
+                      _vm.tab = $$v
+                    },
+                    expression: "tab"
+                  }
+                },
+                _vm._l(_vm.items, function(item) {
+                  return _c(
+                    "v-tab-item",
+                    { key: item.key },
+                    [
+                      _c(
+                        "v-card",
+                        { staticClass: "pa-5", attrs: { flat: "" } },
+                        [
+                          _c("v-card-text", [
+                            _vm._v(
+                              "I am student " +
+                                _vm._s(item.key) +
+                                " " +
+                                _vm._s(_vm.tab)
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _c(
+                            "v-row",
+                            {
+                              staticClass: "mb-6",
+                              attrs: { "no-gutters": "" }
+                            },
+                            [
+                              _c(
+                                "v-col",
+                                { attrs: { cols: "12", sm: "6" } },
+                                [
+                                  _c(
+                                    "v-card",
+                                    {
+                                      staticClass: "pa-2",
+                                      attrs: { tile: "", outlined: "" }
+                                    },
+                                    [
+                                      _c("v-text-field", {
+                                        key: "s" + item.key,
+                                        attrs: {
+                                          label: "Student Name" + +item.key,
+                                          rules: _vm.rules,
+                                          type: "text",
+                                          "hide-details": "auto"
+                                        },
+                                        model: {
+                                          value: item.name,
+                                          callback: function($$v) {
+                                            _vm.$set(item, "name", $$v)
+                                          },
+                                          expression: "item.name"
+                                        }
+                                      })
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "v-col",
+                                { attrs: { cols: "12", sm: "6" } },
+                                [
+                                  _c(
+                                    "v-card",
+                                    {
+                                      staticClass: "pa-2",
+                                      attrs: { tile: "", outlined: "" }
+                                    },
+                                    _vm._l(item.scores, function(s) {
+                                      return _c("v-text-field", {
+                                        key:
+                                          "scr-" +
+                                          _vm.tab +
+                                          "-" +
+                                          Number(s.key),
+                                        attrs: {
+                                          label:
+                                            "scr-" +
+                                            _vm.tab +
+                                            "-" +
+                                            Number(s.key),
+                                          rules: _vm.rules,
+                                          type: "Number",
+                                          "hide-details": "auto",
+                                          min: "1"
+                                        },
+                                        model: {
+                                          value: s.value,
+                                          callback: function($$v) {
+                                            _vm.$set(s, "value", $$v)
+                                          },
+                                          expression: "s.value"
+                                        }
+                                      })
+                                    }),
+                                    1
+                                  )
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
+                }),
+                1
+              )
+            ],
+            1
+          )
+        : _vm._e()
     ],
     1
   )

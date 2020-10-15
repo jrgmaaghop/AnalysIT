@@ -2,15 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5e942282-1098-45aa-af02-a2c6f3220605" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/AnalysIT.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/AnalysIT.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/layouts/home.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/layouts/home.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -188,7 +182,8 @@
       <option name="presentableId" value="Default" />
       <updated>1602568127422</updated>
       <workItem from="1602568128484" duration="11542000" />
-      <workItem from="1602640622764" duration="12830000" />
+      <workItem from="1602640622764" duration="13075000" />
+      <workItem from="1602724221396" duration="13034000" />
     </task>
     <servers />
   </component>
