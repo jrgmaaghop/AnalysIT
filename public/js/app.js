@@ -2282,6 +2282,19 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -2299,7 +2312,8 @@ __webpack_require__.r(__webpack_exports__);
         return !!value || 'Required.';
       }],
       render_table: false,
-      tab: 0
+      tab: 0,
+      editable: true
     };
   },
   // name: "home"
@@ -2312,6 +2326,19 @@ __webpack_require__.r(__webpack_exports__);
     });
   },
   methods: {
+    reset: function reset() {
+      this.number_items = 1;
+      this.number_studs = 1;
+      this.items = [];
+      this.form = {
+        key: null,
+        name: '',
+        scores: []
+      };
+      this.render_table = false;
+      this.tab = 0;
+      this.editable = true;
+    },
     setNumbers: function setNumbers() {
       for (var n = 0; n < this.number_studs; n++) {
         this.form = {
@@ -2330,9 +2357,7 @@ __webpack_require__.r(__webpack_exports__);
         }
       }
 
-      console.log(this.number_studs);
-      console.log(this.number_items);
-      console.log(this.items);
+      this.editable = false;
       this.render_table = true;
     },
     calculate: function calculate() {
@@ -3628,10 +3653,16 @@ var render = function() {
                           _c("v-text-field", {
                             attrs: {
                               label: "Number of Items",
+                              disabled: !_vm.editable,
                               rules: _vm.rules,
                               type: "number",
                               "hide-details": "auto",
                               min: "1"
+                            },
+                            on: {
+                              update: function($event) {
+                                return _vm.setNumbers()
+                              }
                             },
                             model: {
                               value: _vm.number_items,
@@ -3652,10 +3683,16 @@ var render = function() {
                           _c("v-text-field", {
                             attrs: {
                               label: "Number of Students",
+                              disabled: !_vm.editable,
                               rules: _vm.rules,
                               type: "number",
                               "hide-details": "auto",
                               min: "1"
+                            },
+                            on: {
+                              update: function($event) {
+                                return _vm.setNumbers()
+                              }
                             },
                             model: {
                               value: _vm.number_studs,
@@ -3673,20 +3710,57 @@ var render = function() {
                   ),
                   _vm._v(" "),
                   _c(
-                    "v-btn",
-                    {
-                      attrs: { block: "" },
-                      on: {
-                        click: function($event) {
-                          return _vm.setNumbers()
-                        }
-                      }
-                    },
+                    "v-row",
                     [
-                      _vm._v(
-                        "\n                    Generate Table\n                "
+                      _c(
+                        "v-col",
+                        { attrs: { cols: "12", sm: "6" } },
+                        [
+                          _c(
+                            "v-btn",
+                            {
+                              attrs: { block: "" },
+                              on: {
+                                click: function($event) {
+                                  return _vm.setNumbers()
+                                }
+                              }
+                            },
+                            [
+                              _vm._v(
+                                "\n                            Generate Table\n                        "
+                              )
+                            ]
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "v-col",
+                        { attrs: { cols: "12", sm: "6" } },
+                        [
+                          _c(
+                            "v-btn",
+                            {
+                              attrs: { block: "" },
+                              on: {
+                                click: function($event) {
+                                  return _vm.reset()
+                                }
+                              }
+                            },
+                            [
+                              _vm._v(
+                                "\n                            Reset\n                        "
+                              )
+                            ]
+                          )
+                        ],
+                        1
                       )
-                    ]
+                    ],
+                    1
                   ),
                   _vm._v(" "),
                   _c("br"),

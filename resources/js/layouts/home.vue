@@ -8,26 +8,39 @@
                             <v-text-field
                                 v-model="number_items"
                                 label="Number of Items"
+                                :disabled="!editable"
                                 :rules="rules"
                                 type="number"
                                 hide-details="auto"
                                 min="1"
+                                @update="setNumbers()"
                             ></v-text-field>
                         </v-col>
                         <v-col cols="12" sm="6">
                             <v-text-field
                                 v-model="number_studs"
                                 label="Number of Students"
+                                :disabled="!editable"
                                 :rules="rules"
                                 type="number"
                                 hide-details="auto"
                                 min="1"
+                                @update="setNumbers()"
                             ></v-text-field>
                         </v-col>
                     </v-row>
-                    <v-btn block @click="setNumbers()">
-                        Generate Table
-                    </v-btn>
+                    <v-row>
+                        <v-col cols="12" sm="6">
+                            <v-btn block @click="setNumbers()">
+                                Generate Table
+                            </v-btn>
+                        </v-col>
+                        <v-col cols="12" sm="6">
+                            <v-btn block @click="reset()">
+                                Reset
+                            </v-btn>
+                        </v-col>
+                    </v-row>
                     <br>
                     <v-btn block @click="calculate()">
                         Calculate
@@ -114,7 +127,8 @@ export default {
               value => !!value || 'Required.'
           ],
           render_table: false,
-          tab: 0
+          tab: 0,
+          editable: true
       }
     },
     // name: "home"
@@ -126,6 +140,15 @@ export default {
           })
   },
   methods: {
+    reset() {
+        this.number_items = 1
+        this.number_studs  = 1
+        this.items = []
+        this.form = { key: null, name: '', scores: [] }
+        this.render_table = false
+        this.tab = 0
+        this.editable = true
+    },
     setNumbers() {
         for (let n = 0; n < this.number_studs; n++) {
             this.form = { key: n, name: '', scores: [] }
@@ -136,9 +159,7 @@ export default {
                 this.items[n].scores.push({ key: i, value: 0 })
             }
         }
-      console.log(this.number_studs)
-      console.log(this.number_items)
-        console.log(this.items)
+        this.editable = false
         this.render_table = true
     },
     calculate() {
