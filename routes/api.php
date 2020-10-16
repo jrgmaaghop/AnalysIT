@@ -18,5 +18,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/calculate', [\App\Http\Controllers\AnalyzeController::class, 'analyze']);
+Route::post('/calculate', [\App\Http\Controllers\AnalyzeController::class, 'analyze']);
 Route::get('/user', [\App\Http\Controllers\UserController::class, 'app']);

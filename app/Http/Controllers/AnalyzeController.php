@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Repository\AnalyzeRepository;
 use Illuminate\Http\Request;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xls;
@@ -10,28 +11,19 @@ use Symfony\Component\HttpFoundation\StreamedResponse;
 
 class AnalyzeController extends Controller
 {
-    public function __construct()
+    public $repository = null;
+    public function __construct(AnalyzeRepository $repository)
     {
+        $this->repository = $repository;
     }
 
     public function analyze(Request $request)
     {
-        $spreadsheet = new Spreadsheet();
-        $sheet = $spreadsheet->getActiveSheet();
-        $sheet->setCellValue('A1', 'Hello World !');
-
-        $streamedResponse = new StreamedResponse();
-        $streamedResponse->setCallback(function () use ($spreadsheet) {
-            // $spreadsheet = //create you spreadsheet here;
-            $writer =  new Xlsx($spreadsheet);
-            $writer->save('php://output');
-        });
-
-        $streamedResponse->setStatusCode(200);
-        $streamedResponse->headers->set('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-        $streamedResponse->headers->set('Content-Disposition', 'attachment; filename="asof.xls"');
-        $streamedResponse->send();
-
-        return response()->json(['scores' => $request['title']]);
+        $collection = collect($request['data']);
+//        $this->repository->generate($num_studs, $num_items, $request['data']);
+        $sample = $this->repository->generate($request['num_studs'], $request['num_items'], $collection);
+        var_dump($sample);
+        var_dump($request->all());
+        return response()->json(['scores' => $collection]);
     }
 }

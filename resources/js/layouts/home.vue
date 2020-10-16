@@ -163,11 +163,25 @@ export default {
         this.render_table = true
     },
     calculate() {
-        // axios.get('/api/calculate')
-        //     .then((response)=>{
-        //         console.log(response)
-        //         this.base = response.data.base_url
-        //     })
+        axios.post('/api/calculate',
+            {
+                // responseType: 'blob',
+                    data: this.items,
+                    num_items: this.number_items,
+                    num_studs: this.number_studs
+                }, {}
+                )
+            .then((response)=>{
+                console.log(response)
+                // var fileURL = window.URL.createObjectURL(new Blob([response.data]));
+                // var fileLink = document.createElement('a');
+                //
+                // fileLink.href = fileURL;
+                // fileLink.setAttribute('download', 'file.xls');
+                // document.body.appendChild(fileLink);
+                //
+                // fileLink.click();
+            })
         console.log(this.items)
 
         // window.open(this.base + '/calculate', "_blank");
